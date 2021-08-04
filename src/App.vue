@@ -8,7 +8,10 @@
       <a href="/.auth/me">My Info</a>
     </div>
     <div>
-      <a href="/api/func/Function1">Call Function API via proxy</a>
+      <a href="/api/func/Function1">Call API on Function App via proxy</a>
+    </div>
+    <div>
+      <a href="/api/web/swa">Call API on Web App via proxy</a>
     </div>
   </div>
 </template>

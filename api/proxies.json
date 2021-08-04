@@ -6,6 +6,12 @@
                 "route": "/api/func/{*path}"
             },
             "backendUri": "https://func-yoko-swa-api-inv.azurewebsites.net/api/{path}"
+        },
+        "WebAppProxy": {
+            "matchCondition": {
+                "route": "/api/web/{*path}"
+            },
+            "backendUri": "https://app-yoko-swa-api-inv.azurewebsites.net/{path}"
         }
     }
 }
