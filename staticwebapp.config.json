@@ -9,7 +9,7 @@
                             "clientSecretSettingName": "B2C_SECRET"
                         },
                         "openIdConnectConfiguration": {
-                            "wellKnownOpenIdConfiguration": "https://aadb2cbeachsidesandbox.b2clogin.com/aadb2cbeachsidesandbox.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_swagger-sample-susi"
+                            "wellKnownOpenIdConfiguration": "https://aadb2cbeachsidesandbox.b2clogin.com/aadb2cbeachsidesandbox.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_swa_susi"
                         }
                     },
                     "login": {
