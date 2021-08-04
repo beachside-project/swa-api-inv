@@ -1,5 +1,27 @@
 {
-    "navigationFallback": {
-        "rewrite": "/index.html"
+    "$schema": "https://json.schemastore.org/staticwebapp.config.json",
+    "auth": {
+        "identityProviders": {
+            "customOpenIdConnectProviders": {
+                "b2c": {
+                    "registration": {
+                        "clientIdSettingName": "B2C_CLINET_ID",
+                        "clientCredential": {
+                            "clientSecretSettingName": "B2C_SECRET"
+                        },
+                        "openIdConnectConfiguration": {
+                            "wellKnownOpenIdConfiguration": "https://aadb2cbeachsidesandbox.b2clogin.com/aadb2cbeachsidesandbox.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_swagger-sample-susi"
+                        }
+                    },
+                    "login": {
+                        "nameClaimType": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+                        "scopes": [
+                            "openid",
+                            "profile"
+                        ]
+                    }
+                }
+            }
+        }
     }
 }
