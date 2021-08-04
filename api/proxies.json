@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json.schemastore.org/proxies",
+    "proxies": {
+        "FunctionProxy": {
+            "matchCondition": {
+                "route": "/api/func/{*path}"
+            },
+            "backendUri": "https://func-yoko-swa-api-inv.azurewebsites.net/api/{path}"
+        }
+    }
+}
