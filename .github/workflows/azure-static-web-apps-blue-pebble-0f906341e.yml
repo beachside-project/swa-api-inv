@@ -10,27 +10,64 @@ on:
       - main
 
 jobs:
+  build:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    name: Build Job
+    steps:
+      - uses: actions/checkout@v2
+      # Setup Node
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODEJS_VERSION }}
+          cache: npm
+      # Restore Pacakges
+      - run: npm ci
+      # Build
+      - run: npm run build
+      - name: move swa config
+        run: mv staticwebapp.config.production.json ./dist/staticwebapp.config.json
+      # Upload Nuxt artifact
+      - uses: actions/upload-artifact@v2
+        with:
+          name: vuedist
+          path: dist
+      - uses: actions/upload-artifact@v2
+        with:
+          name: functionapp
+          path: api
+
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    needs: build
+    name: Deploy Job
     steps:
-      - uses: actions/checkout@v2
+      # Download Nuxt artifact
+      - name: Download publish files
+        uses: actions/download-artifact@v2
         with:
-          submodules: true
-      - name: Build And Deploy
+          name: vuedist
+          path: dist
+
+      # Download Function App artifact
+      - name: Download function app
+        uses: actions/download-artifact@v2
+        with:
+          name: functionapp
+          path: api
+
+      # Deploy to SWA
+      - name: Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_PEBBLE_0F906341E }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
-          action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "dist" # Built app content directory - optional
-          ###### End of Repository/Build Configurations ######
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: 'upload'
+          app_location: '/dist'
+          api_location: 'api'
+          skip_app_build: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -42,4 +79,42 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_PEBBLE_0F906341E }}
-          action: "close"
+          action: 'close'
+
+
+
+
+
+  # build_and_deploy_job:
+  #   if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+  #   runs-on: ubuntu-latest
+  #   name: Build and Deploy Job
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         submodules: true
+  #     - name: Build And Deploy
+  #       id: builddeploy
+  #       uses: Azure/static-web-apps-deploy@v1
+  #       with:
+  #         azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_PEBBLE_0F906341E }}
+  #         repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+  #         action: "upload"
+  #         ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
+  #         # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+  #         app_location: "/" # App source code path
+  #         api_location: "" # Api source code path - optional
+  #         output_location: "dist" # Built app content directory - optional
+  #         ###### End of Repository/Build Configurations ######
+
+  # close_pull_request_job:
+  #   if: github.event_name == 'pull_request' && github.event.action == 'closed'
+  #   runs-on: ubuntu-latest
+  #   name: Close Pull Request Job
+  #   steps:
+  #     - name: Close Pull Request
+  #       id: closepullrequest
+  #       uses: Azure/static-web-apps-deploy@v1
+  #       with:
+  #         azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_PEBBLE_0F906341E }}
+  #         action: "close"
