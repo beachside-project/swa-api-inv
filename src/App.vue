@@ -1,6 +1,6 @@
 <template>
   <div>
-    Hello {{ value }}
+    Hello B2C {{ value }}
     <div>
       <a href="/.auth/login/b2c">Login</a>
     </div>
