@@ -1,11 +1,10 @@
 {
-    "$schema": "https://json.schemastore.org/staticwebapp.config.json",
     "auth": {
         "identityProviders": {
             "customOpenIdConnectProviders": {
                 "b2c": {
                     "registration": {
-                        "clientIdSettingName": "B2C_CLINET_ID",
+                        "clientIdSettingName": "B2C_CLIENT_ID",
                         "clientCredential": {
                             "clientSecretSettingName": "B2C_SECRET"
                         },
@@ -18,7 +17,8 @@
                         "scopes": [
                             "openid",
                             "profile"
-                        ]
+                        ],
+                        "loginParameterNames": []
                     }
                 }
             }
