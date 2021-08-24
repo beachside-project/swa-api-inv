@@ -27,13 +27,20 @@
             "redirect": "https://app-yoko-swa-api-inv.azurewebsites.net/swa/demo1?statusCode=403"
         }
     ],
+    "navigationFallback": {
+        "rewrite": "index.html",
+        "exclude": [
+            "/images/*.{png,jpg,gif}",
+            "/css/*"
+        ]
+    },
     "responseOverrides": {
         "401": {
-            "redirect": "./login",
+            "redirect": "/login",
             "statusCode": 302
         },
         "403": {
-            "redirect": "https://blue-pebble-0f906341e.azurestaticapps.net/login",
+            "redirect": "/login",
             "statusCode": 302
         }
     },
