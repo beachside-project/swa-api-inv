@@ -29,11 +29,11 @@
     ],
     "responseOverrides": {
         "401": {
-            "redirect": "/login",
+            "redirect": "./login",
             "statusCode": 302
         },
         "403": {
-            "redirect": "/login",
+            "redirect": "https://blue-pebble-0f906341e.azurestaticapps.net/login",
             "statusCode": 302
         }
     },
