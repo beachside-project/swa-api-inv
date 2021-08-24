@@ -8,6 +8,11 @@
             ]
         },
         {
+            "route": "/.auth/login/b2c/callback",
+            "statusCode": 401,
+            "redirect": "/"
+        },
+        {
             "route": "/me",
             "redirect": "/.auth/me",
             "allowedRoles": [
