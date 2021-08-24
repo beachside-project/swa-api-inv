@@ -1,7 +1,29 @@
 {
+    "routes": [
+        {
+            "route": "/me",
+            "redirect": "/.auth/me"
+        },
+        {
+            "route": "/direct",
+            "redirect": "https://app-yoko-swa-api-inv.azurewebsites.net/swa/direct"
+        },
+        {
+            "route": "/direct401",
+            "redirect": "https://app-yoko-swa-api-inv.azurewebsites.net/swa/demo1?statusCode=401"
+        },
+        {
+            "route": "/direct403",
+            "redirect": "https://app-yoko-swa-api-inv.azurewebsites.net/swa/demo1?statusCode=403"
+        }
+    ],
     "responseOverrides": {
         "401": {
-            "redirect": "/",
+            "redirect": "/me",
+            "statusCode": 302
+        },
+        "403": {
+            "redirect": "/.auth/me",
             "statusCode": 302
         }
     },
