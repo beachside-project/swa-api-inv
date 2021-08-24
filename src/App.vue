@@ -2,7 +2,7 @@
   <div>
     Hello B2C {{ value }}
     <div>
-      <a href="/.auth/login/b2c">Login</a>
+      <a href="/login">Login</a>
     </div>
     <div>
       <a href="/me">My Info</a>

@@ -7,6 +7,19 @@
             },
             "backendUri": "https://func-yoko-swa-api-inv.azurewebsites.net/api/{path}"
         },
+        "proxy1": {
+            "matchCondition": {
+                "methods": [
+                    "GET"
+                ],
+                "route": "/api/status-test/401"
+            },
+            "responseOverrides": {
+                "response.body": "Hello, 401",
+                "response.statusCode": "401",
+                "response.headers.Content-Type": "text/plain"
+            }
+        },
         "WebAppProxy": {
             "matchCondition": {
                 "route": "/api/web/{*path}"

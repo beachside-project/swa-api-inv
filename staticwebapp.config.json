@@ -1,8 +1,18 @@
 {
     "routes": [
         {
+            "route": "/login",
+            "redirect": "/.auth/login/b2c",
+            "allowedRoles": [
+                "anonymous"
+            ]
+        },
+        {
             "route": "/me",
-            "redirect": "/.auth/me"
+            "redirect": "/.auth/me",
+            "allowedRoles": [
+                "authenticated"
+            ]
         },
         {
             "route": "/direct",
@@ -19,11 +29,11 @@
     ],
     "responseOverrides": {
         "401": {
-            "redirect": "/me",
+            "redirect": "/login",
             "statusCode": 302
         },
         "403": {
-            "redirect": "/.auth/me",
+            "redirect": "/login",
             "statusCode": 302
         }
     },
