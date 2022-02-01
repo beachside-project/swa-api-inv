@@ -2,7 +2,8 @@
     "routes": [
         {
             "route": "/logout",
-            "redirect": "/.auth/logout"
+            "redirect": "/.auth/logout",
+            "post_logout_redirect_uri": "https://blog.beachside.dev/entry/2022/01/13/140438"
         },
         {
             "route": "/login",
