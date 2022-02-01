@@ -1,6 +1,10 @@
 {
     "routes": [
         {
+            "route": "/logout",
+            "redirect": "/.auth/logout"
+        },
+        {
             "route": "/login",
             "redirect": "/.auth/login/b2c",
             "allowedRoles": [
