@@ -16,7 +16,10 @@
   "routes": [
     {
       "route": "/logout",
-      "redirect": "/.auth/logout?post_logout_redirect_uri=https://fd-swa-demo.azurefd.net/.auth/me"
+      "redirect": "/.auth/logout?post_logout_redirect_uri=https://fd-swa-demo.azurefd.net/.auth/me",
+      "allowedRoles": [
+        "anonymous"
+      ]
     },
     {
       "route": "/login",
@@ -43,7 +46,13 @@
     {
       "route": "/direct403",
       "redirect": "https://app-yoko-swa-api-inv.azurewebsites.net/swa/demo1?statusCode=403"
-    }
+    },
+    {
+      "route": "/*",
+      "allowedRoles": [
+          "authenticated"
+      ]
+  }
   ],
   "navigationFallback": {
     "rewrite": "index.html",
@@ -51,6 +60,12 @@
       "/images/*.{png,jpg,gif}",
       "/css/*"
     ]
+  },
+  "responseOverrides": {
+    "401": {
+      "redirect": "/login",
+      "statusCode": 302
+    }
   },
   "auth": {
     "identityProviders": {
