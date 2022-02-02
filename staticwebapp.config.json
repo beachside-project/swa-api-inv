@@ -20,7 +20,7 @@
     },
     {
       "route": "/login",
-      "redirect": "/.auth/login/b2c",
+      "redirect": "/.auth/login/b2c?post_login_redirect_uri=/me",
       "allowedRoles": [
         "anonymous"
       ]
