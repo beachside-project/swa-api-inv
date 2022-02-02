@@ -1,4 +1,10 @@
 {
+  "$schema": "https://json.schemastore.org/staticwebapp.config.json",
+  "forwardingGateway": {
+    "allowedForwardedHosts": [
+      "fd-swa-demo.azurefd.net"
+    ]
+  },
   "routes": [
     {
       "route": "/logout",
@@ -62,10 +68,5 @@
         }
       }
     }
-  },
-  "forwardingGateway": {
-    "allowedForwardedHosts": [
-      "fd-swa-demo.azurefd.net"
-    ]
   }
 }
