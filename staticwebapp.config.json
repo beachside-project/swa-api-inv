@@ -1,9 +1,17 @@
 {
   "$schema": "https://json.schemastore.org/staticwebapp.config.json",
+  "networking": {
+    "allowedIpRanges": [
+      "AzureFrontDoor.Backend"
+    ]
+  },
   "forwardingGateway": {
     "allowedForwardedHosts": [
       "fd-swa-demo.azurefd.net"
-    ]
+    ],
+    "requiredHeaders": {
+      "X-Azure-FDID": "4ca646a6-f5e7-41ec-868d-715978e48b44"
+    }
   },
   "routes": [
     {
