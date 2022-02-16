@@ -22,6 +22,13 @@
       ]
     },
     {
+      "route": "/logout2",
+      "redirect": "https://aadb2cbeachsidesandbox.b2clogin.com/aadb2cbeachsidesandbox.onmicrosoft.com/B2C_1_swa_susi/oauth2/v2.0/logout?post_logout_redirect=https://fd-swa-demo.azurefd.net/.auth/logout",
+      "allowedRoles": [
+        "anonymous"
+      ]
+    },
+    {
       "route": "/login",
       "redirect": "/.auth/login/b2c?post_login_redirect_uri=/me",
       "allowedRoles": [
