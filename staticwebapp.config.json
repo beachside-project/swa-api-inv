@@ -23,7 +23,7 @@
     },
     {
       "route": "/logout2",
-      "redirect": "https://aadb2cbeachsidesandbox.b2clogin.com/aadb2cbeachsidesandbox.onmicrosoft.com/B2C_1_swa_susi/oauth2/v2.0/logout?post_logout_redirect=https://fd-swa-demo.azurefd.net/.auth/logout",
+      "redirect": "https://aadb2cbeachsidesandbox.b2clogin.com/aadb2cbeachsidesandbox.onmicrosoft.com/B2C_1_swa_susi/oauth2/v2.0/logout?post_logout_redirect_uri=https://fd-swa-demo.azurefd.net/.auth/logout",
       "allowedRoles": [
         "anonymous"
       ]
